@@ -43,44 +43,51 @@ export default function Menu() {
     // Sodas
     {
       id: 5,
-      name: "Mango Soda Float",
+      name: "Blueberry Soda",
       category: "Soda",
-      image: "images/products/Product1.png",
+      image: "images/products/soda/blueberry.png",
     },
     {
       id: 6,
-      name: "Lemon Mango Soda",
+      name: "Passion Fruit Soda",
       category: "Soda",
-      image: "images/products/Product2.png",
+      image: "images/products/soda/mlpassion.png",
     },
     {
       id: 7,
-      name: "Berry Mango Soda",
+      name: "Peach Soda",
       category: "Soda",
-      image: "images/products/Product3.png",
+      image: "images/products/soda/mlpeach.png",
     },
+        {
+      id: 8,
+      name: "Kiwi Soda",
+      category: "Soda",
+      image: "images/products/soda/kiwi.png",
+    },
+
 
     // Milk Tea
     {
-      id: 8,
+      id: 9,
       name: "Mango Milk Tea",
       category: "Milk Tea",
       image: "images/products/Product2.png",
     },
     {
-      id: 9,
+      id: 10,
       name: "Mango Taro Milk Tea",
       category: "Milk Tea",
       image: "images/products/Product4.png",
     },
     {
-      id: 10,
+      id: 11,
       name: "Mango Wintermelon",
       category: "Milk Tea",
       image: "images/products/Product5.png",
     },
     {
-      id: 11,
+      id: 12,
       name: "Mango Matcha Milk Tea",
       category: "Milk Tea",
       image: "images/products/Product1.png",
@@ -88,19 +95,19 @@ export default function Menu() {
 
     // Coffee
     {
-      id: 12,
+      id: 13,
       name: "Mango Coffee Frappe",
       category: "Coffee",
       image: "images/products/Product3.png",
     },
     {
-      id: 13,
+      id: 14,
       name: "Mango Caramel Latte",
       category: "Coffee",
       image: "images/products/Product2.png",
     },
     {
-      id: 14,
+      id: 15,
       name: "Mango Mocha",
       category: "Coffee",
       image: "images/products/Product4.png",
@@ -108,25 +115,25 @@ export default function Menu() {
 
     // Fruit Tea
     {
-      id: 15,
+      id: 16,
       name: "Mango Passion Fruit Tea",
       category: "Fruit Tea",
       image: "images/products/Product5.png",
     },
     {
-      id: 16,
+      id: 17,
       name: "Mango Peach Tea",
       category: "Fruit Tea",
       image: "images/products/Product1.png",
     },
     {
-      id: 17,
+      id: 18,
       name: "Mango Lychee Tea",
       category: "Fruit Tea",
       image: "images/products/Product2.png",
     },
     {
-      id: 18,
+      id: 29,
       name: "Mango Strawberry Tea",
       category: "Fruit Tea",
       image: "images/products/Product3.png",
