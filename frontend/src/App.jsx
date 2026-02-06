@@ -5,6 +5,8 @@ import AboutUs from "./pages/AboutUs";
 import Branches from "./pages/Branches";
 import Menu from "./pages/Menu";
 import ContactUs from "./pages/ContactUs";
+import Events from "./pages/Events";
+import Franchise from "./pages/Franchise";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="branches" element={<Branches />} />
           <Route path="menu" element={<Menu />} />
           <Route path="contact-us" element={<ContactUs />} />
+          <Route path="events" element={<Events />} />
+          <Route path="franchise" element={<Franchise />} />
         </Route>
       </Routes>
     </BrowserRouter>

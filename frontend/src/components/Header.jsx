@@ -9,6 +9,8 @@ export default function Header() {
     { name: "Branches", path: "/branches" },
     { name: "Menu", path: "/menu" },
     { name: "Contact Us", path: "/contact-us" },
+    { name: "Events", path: "/events" },
+    { name: "Franchise", path: "/franchise" },
   ];
 
   const isActive = (path) => location.pathname === path;
