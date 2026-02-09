@@ -11,33 +11,34 @@ export default function Menu() {
     "Milk Tea",
     "Coffee",
     "Fruit Tea",
+    "Yogurt",
   ];
 
   const menuItems = [
     // Shakes
     {
       id: 1,
-      name: "Classic Mango Shake",
+      name: "Mango Mix Overload",
       category: "Shake",
-      image: "images/products/Product1.png",
+      image: "images/products/shake/mangomix.png",
     },
     {
       id: 2,
-      name: "Mango Graham Shake",
+      name: "Mango Graham",
       category: "Shake",
-      image: "images/products/Product3.png",
+      image: "images/products/shake/graham.png",
     },
     {
       id: 3,
-      name: "Mango Cream Shake",
+      name: "Mango Oreo",
       category: "Shake",
-      image: "images/products/Product4.png",
+      image: "images/products/shake/oreo.png",
     },
     {
       id: 4,
-      name: "Mango Oreo Shake",
+      name: "Mango Strawberry Puroo",
       category: "Shake",
-      image: "images/products/Product5.png",
+      image: "images/products/shake/strawberry.png",
     },
 
     // Sodas
@@ -51,13 +52,13 @@ export default function Menu() {
       id: 6,
       name: "Passion Fruit Soda",
       category: "Soda",
-      image: "images/products/soda/mlpassion.png",
+      image: "images/products/soda/passion_fruit.png",
     },
     {
       id: 7,
       name: "Peach Soda",
       category: "Soda",
-      image: "images/products/soda/mlpeach.png",
+      image: "images/products/soda/peach.png",
     },
         {
       id: 8,
@@ -65,78 +66,123 @@ export default function Menu() {
       category: "Soda",
       image: "images/products/soda/kiwi.png",
     },
-
-
-    // Milk Tea
+// Fruit Tea
     {
       id: 9,
-      name: "Mango Milk Tea",
-      category: "Milk Tea",
-      image: "images/products/Product2.png",
+      name: "Kiwi Fruit Tea",
+      category: "Fruit Tea",
+      image: "images/products/fruittea/ftkiwi.png",
     },
     {
       id: 10,
-      name: "Mango Taro Milk Tea",
-      category: "Milk Tea",
-      image: "images/products/Product4.png",
+      name: "Passion Fruit Tea",
+      category: "Fruit Tea",
+      image: "images/products/fruittea/passionfruit.png",
     },
     {
       id: 11,
-      name: "Mango Wintermelon",
-      category: "Milk Tea",
-      image: "images/products/Product5.png",
+      name: "Blueberry Tea",
+      category: "Fruit Tea",
+      image: "images/products/fruittea/blueberry.png",
     },
     {
       id: 12,
-      name: "Mango Matcha Milk Tea",
-      category: "Milk Tea",
-      image: "images/products/Product1.png",
+      name: "Peach Tea",
+      category: "Fruit Tea",
+      image: "images/products/fruittea/peach.png",
     },
-
     // Coffee
     {
-      id: 13,
-      name: "Mango Coffee Frappe",
+      id: 20,
+      name: "Matcha Coffee",
       category: "Coffee",
-      image: "images/products/Product3.png",
+      image: "images/products/coffee/matcha.png",
+    },
+    {
+      id: 21,
+      name: "Salted Caramel Coffee",
+      category: "Coffee",
+      image: "images/products/coffee/salted_caramel.png",
+    },
+    {
+      id: 22,
+      name: "Latte",
+      category: "Coffee",
+      image: "images/products/coffee/latte.png",
+    },
+    {
+      id: 23,
+      name: "Americano",
+      category: "Coffee",
+      image: "images/products/coffee/americano.png",
+    },
+    // Milk Tea
+    {
+      id: 13,
+      name: "Taro Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/taro.png",
     },
     {
       id: 14,
-      name: "Mango Caramel Latte",
-      category: "Coffee",
-      image: "images/products/Product2.png",
+      name: "Okinawa Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/okinawa.png",
     },
     {
       id: 15,
-      name: "Mango Mocha",
-      category: "Coffee",
-      image: "images/products/Product4.png",
+      name: "Cookies & Cream Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/cookies_cream.png",
     },
-
-    // Fruit Tea
     {
       id: 16,
-      name: "Mango Passion Fruit Tea",
-      category: "Fruit Tea",
-      image: "images/products/Product5.png",
+      name: "Hokkaido Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/hokkaido.png",
     },
-    {
+        {
       id: 17,
-      name: "Mango Peach Tea",
-      category: "Fruit Tea",
-      image: "images/products/Product1.png",
+      name: "Red Velvet Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/red_velvet.png",
     },
-    {
+          {
       id: 18,
-      name: "Mango Lychee Tea",
-      category: "Fruit Tea",
-      image: "images/products/Product2.png",
+      name: "Salted Caramel Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/salted.png",
     },
-    {
-      id: 29,
-      name: "Mango Strawberry Tea",
-      category: "Fruit Tea",
-      image: "images/products/Product3.png",
+        {
+      id: 19,
+      name: "Java Chip Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/javachip.png",
+    },
+
+    //Yogurt
+     {
+      id: 24,
+      name: "Green Apple Yogurt",
+      category: "Yogurt",
+      image: "images/products/yogurt/greenapple.png",
+    },
+     {
+      id: 25,
+      name: "Strawberry Yogurt",
+      category: "Yogurt",
+      image: "images/products/yogurt/strawberry.png",
+    }, {
+      id: 26,
+      name: "Lemon Yogurt",
+      category: "Yogurt",
+      image: "images/products/yogurt/lemon.png",
+    },
+     {
+      id: 27,
+      name: "Lychee Yogurt",
+      category: "Yogurt",
+      image: "images/products/yogurt/lychee.png",
     },
   ];
 
@@ -435,43 +481,6 @@ export default function Menu() {
             >
               Find a Branch
             </motion.button>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Bottom CTA Section */}
-      <div className="bg-gradient-to-r from-orange-500 to-orange-600 py-16">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Can't Decide What to Order?
-            </h2>
-            <p className="text-orange-100 text-lg max-w-2xl mx-auto">
-              Visit any of our branches and let our friendly staff help you
-              choose the perfect mango drink for your taste!
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-white text-orange-600 font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
-              >
-                Find a Branch
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white hover:bg-white hover:text-orange-600 transition-all duration-300 shadow-xl"
-              >
-                View Best Sellers
-              </motion.button>
-            </div>
           </motion.div>
         </div>
       </div>
