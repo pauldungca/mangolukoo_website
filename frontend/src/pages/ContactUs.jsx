@@ -360,25 +360,6 @@ export default function ContactUs() {
                       placeholder="+63 927 965 3490"
                     />
                   </div>
-                  
-                  <div>
-                    <label className="block text-gray-700 mb-2 font-medium">
-                      Subject
-                    </label>
-                    <select
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
-                    >
-                      <option value="">Select a topic</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="franchise">Franchise Opportunity</option>
-                      <option value="feedback">Feedback</option>
-                      <option value="partnership">Business Partnership</option>
-                      <option value="complaint">Customer Concern</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div>

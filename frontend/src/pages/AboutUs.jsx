@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function AboutUs() {
   return (
@@ -167,6 +168,7 @@ export default function AboutUs() {
           <h2 className="text-3xl font-bold text-gray-800 mb-6">
             Experience the Taste of Real Mango
           </h2>
+          <Link to="/menu">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -174,6 +176,7 @@ export default function AboutUs() {
           >
             View Our Menu
           </motion.button>
+          </Link>
         </motion.div>
       </div>
     </div>
