@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -181,6 +182,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="flex flex-wrap gap-4 pt-4"
               >
+                <Link to="/menu">
                 <motion.button
                   whileHover={{
                     scale: 1.05,
@@ -205,6 +207,8 @@ export default function Home() {
                     transition={{ duration: 0.3 }}
                   />
                 </motion.button>
+                </Link>
+                <Link to ="/branches">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -212,6 +216,7 @@ export default function Home() {
                 >
                   Find a Branch
                 </motion.button>
+                </Link>
               </motion.div>
 
               {/* Stats */}
@@ -593,6 +598,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="pt-6"
             >
+              <Link to="/branches">  
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -600,6 +606,7 @@ export default function Home() {
               >
                 View All Branches
               </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -666,9 +673,11 @@ export default function Home() {
         </div>
         {/* View All Menu Button */}
         <div className="flex justify-center mt-16">
-          <button className="px-8 py-3 bg-white text-orange-600 font-semibold rounded-full border-2 border-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-md hover:shadow-xl">
+        <Link to="/menu">
+        <button className="px-8 py-3 bg-white text-orange-600 font-semibold rounded-full border-2 border-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-md hover:shadow-xl">
             View All Menu
           </button>
+        </Link>
         </div>
       </div>
     </div>

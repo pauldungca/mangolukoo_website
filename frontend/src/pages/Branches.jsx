@@ -1,8 +1,11 @@
-import React from "react";
+import { useState, useEffect} from "react"; 
 import { motion } from "framer-motion";
 import { MapPin, Clock, Phone, Navigation } from "lucide-react";
 
 export default function Branches() {
+      useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const branches = [
     {
       id: 1,

@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const categories = [
     "All",
@@ -159,6 +163,13 @@ export default function Menu() {
       category: "Milk Tea",
       image: "images/products/milktea/javachip.png",
     },
+    {
+      id: 20,
+      name: "Dark Choco Milk Tea",
+      category: "Milk Tea",
+      image: "images/products/milktea/javachip.png",
+    },
+
 
     //Yogurt
      {
@@ -458,32 +469,33 @@ export default function Menu() {
       </div>
 
       {/* Bottom CTA Section */}
-      <div className="bg-gradient-to-r from-orange-500 to-orange-600 py-16">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="space-y-6"
+     <div className="bg-gradient-to-r from-orange-500 to-orange-600 py-16">
+      <div className="container mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="space-y-6"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Can't decide? Try our Customer Favorites!
+          </h2>
+          <p className="text-orange-100 text-lg max-w-2xl mx-auto">
+            Visit any of our branches and let our staff help you choose the
+            perfect drink for your taste
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => window.location.href = '/branches'}
+            className="px-10 py-4 bg-white text-orange-600 font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Can't decide? Try our Customer Favorites!
-            </h2>
-            <p className="text-orange-100 text-lg max-w-2xl mx-auto">
-              Visit any of our branches and let our staff help you choose the
-              perfect drink for your taste
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-white text-orange-600 font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
-            >
-              Find a Branch
-            </motion.button>
-          </motion.div>
-        </div>
+            Find a Branch
+          </motion.button>
+        </motion.div>
       </div>
+    </div>
     </div>
   );
 }
