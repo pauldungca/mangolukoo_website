@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const carouselInterval = useRef(null);
 
   const images = [
@@ -15,7 +16,19 @@ export default function Home() {
     "images/products/milktea/okinawa.png",
   ];
 
-  // Smooth auto-rotation with longer interval
+  // Detect mobile for performance optimization
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Optimized auto-rotation
   useEffect(() => {
     carouselInterval.current = setInterval(() => {
       setDirection(1);
@@ -25,19 +38,26 @@ export default function Home() {
     return () => clearInterval(carouselInterval.current);
   }, [images.length]);
 
+  const goToImage = (index) => {
+    const newDirection = index > currentImage ? 1 : -1;
+    setDirection(newDirection);
+    setCurrentImage(index);
+    resetInterval();
+  };
+
   const nextImage = () => {
     setDirection(1);
     setCurrentImage((prev) => (prev + 1) % images.length);
-    clearInterval(carouselInterval.current);
-    carouselInterval.current = setInterval(() => {
-      setDirection(1);
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000);
+    resetInterval();
   };
 
   const prevImage = () => {
     setDirection(-1);
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    resetInterval();
+  };
+
+  const resetInterval = () => {
     clearInterval(carouselInterval.current);
     carouselInterval.current = setInterval(() => {
       setDirection(1);
@@ -45,8 +65,29 @@ export default function Home() {
     }, 5000);
   };
 
-  // Enhanced smooth animation variants
-  const slideVariants = {
+  // Optimized animation variants - simpler on mobile
+  const slideVariants = isMobile ? {
+    // Mobile: Simplified rotation
+    enter: (direction) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: direction > 0 ? 45 : -45,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? -300 : 300,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: direction > 0 ? -45 : 45,
+    }),
+  } : {
+    // Desktop: Full 3D effects
     enter: (direction) => ({
       x: direction > 0 ? 500 : -500,
       opacity: 0,
@@ -70,8 +111,12 @@ export default function Home() {
     }),
   };
 
-  // Smooth spring configuration
-  const spring = {
+  // Optimized spring config for mobile
+  const animationConfig = isMobile ? {
+    type: "tween",
+    duration: 0.4,
+    ease: "easeInOut"
+  } : {
     type: "spring",
     stiffness: 200,
     damping: 25,
@@ -160,7 +205,7 @@ export default function Home() {
                     ease: "linear",
                   }}
                   className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-orange-400 bg-[length:200%_auto]"
-                >
+                  >
                   Lukoo
                 </motion.span>
               </motion.h1>
@@ -250,19 +295,21 @@ export default function Home() {
 
             {/* Premium Smooth 3D Carousel */}
             <div className="relative perspective-1000">
-              {/* Animated Background Glow */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.15, 1],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-0 bg-gradient-to-br from-orange-400/30 to-orange-300/15 rounded-[60px] blur-3xl"
-              />
+              {/* Only show animated background glow on desktop */}
+              {!isMobile && (
+                <motion.div
+                  animate={{
+                    scale: [1, 1.15, 1],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute inset-0 bg-gradient-to-br from-orange-400/30 to-orange-300/15 rounded-[60px] blur-3xl"
+                />
+              )}
 
               {/* Carousel Container */}
               <div className="relative z-10 h-[380px] sm:h-[450px] md:h-[520px] lg:h-[550px] flex items-center justify-center">
@@ -270,20 +317,23 @@ export default function Home() {
                 <div className="relative 
                   w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px]
                   h-[320px] sm:h-[380px] md:h-[440px] lg:h-[480px]"
-                style={{ transformStyle: "preserve-3d" }}>
-                  {/* Smooth Floating Shadow Effect */}
-                  <motion.div
-                    animate={{
-                      y: [0, -25, 0],
-                      scale: [1, 1.05, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute inset-0 bg-gradient-to-b from-orange-400/40 to-transparent rounded-[60px] blur-2xl"
-                  />
+                style={!isMobile ? { transformStyle: "preserve-3d" } : {}}>
+                  
+                  {/* Only show floating shadow on desktop */}
+                  {!isMobile && (
+                    <motion.div
+                      animate={{
+                        y: [0, -25, 0],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute inset-0 bg-gradient-to-b from-orange-400/40 to-transparent rounded-[60px] blur-2xl"
+                    />
+                  )}
 
                   {/* Animated Image with Smooth Transitions */}
                   <AnimatePresence custom={direction} mode="wait">
@@ -295,149 +345,161 @@ export default function Home() {
                       animate="center"
                       exit="exit"
                       transition={{
-                        x: spring,
-                        opacity: { duration: 0.4, ease: "easeInOut" },
-                        scale: { duration: 0.5, ease: "easeOut" },
-                        rotateY: spring,
-                        filter: { duration: 0.3 },
+                        x: animationConfig,
+                        opacity: { duration: 0.3, ease: "easeInOut" },
+                        scale: { duration: 0.4, ease: "easeOut" },
+                        rotateY: animationConfig,
+                        filter: !isMobile ? { duration: 0.3 } : undefined,
                       }}
-                      className="absolute w-full h-full"
-                      style={{ transformStyle: "preserve-3d" }}
+                      className="absolute w-full h-full cursor-pointer"
+                      style={!isMobile ? { transformStyle: "preserve-3d" } : {}}
+                      onClick={nextImage}
                     >
                       {/* Main Image Container */}
                       <div className="relative w-full h-full">
                         {/* Enhanced Gradient Frame with Glow */}
-                        <motion.div
-                          animate={{
-                            boxShadow: [
-                              "0 0 30px rgba(249, 115, 22, 0.3)",
-                              "0 0 50px rgba(249, 115, 22, 0.5)",
-                              "0 0 30px rgba(249, 115, 22, 0.3)",
-                            ],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                          className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-400 to-orange-500 rounded-[50px] p-[4px]"
-                        >
-                          <div className="relative w-full h-full bg-white rounded-[47px] overflow-hidden shadow-2xl">
-                            {/* Image with Smooth Zoom */}
-                            <motion.img
-                              initial={{ scale: 1.1 }}
-                              animate={{ scale: 1 }}
-                              transition={{ duration: 0.8, ease: "easeOut" }}
-                              whileHover={{ scale: 1.05 }}
-                              src={images[currentImage]}
-                              alt={`Product ${currentImage + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                            
-                            {/* Smooth Gradient Overlay */}
-                            <motion.div
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ duration: 0.6 }}
-                              className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-[47px]"
-                            />
-                            
-                            {/* Animated Shine Effect */}
-                            <motion.div
-                              animate={{
-                                x: ["-100%", "200%"],
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                repeatDelay: 2,
-                                ease: "easeInOut",
-                              }}
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
-                              style={{ width: "50%" }}
-                            />
-                          </div>
-                        </motion.div>
+                       <div className={`absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-400 to-orange-500 ${
+                         isMobile ? 'rounded-3xl p-[3px] shadow-xl' : 'rounded-[50px] p-[4px] shadow-2xl'
+                       }`} />
 
-                        {/* Decorative Rotating Corners */}
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                          className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-300 rounded-2xl p-1.5 shadow-xl"
-                        >
-                          <div className="w-full h-full bg-gradient-to-br from-orange-100 to-white rounded-xl" />
-                        </motion.div>
+                    <div className={`relative w-full h-full bg-white ${
+                      isMobile ? 'rounded-[26px] shadow-xl' : 'rounded-[47px] shadow-2xl'
+                    } overflow-hidden`}>
+                      {/* Image with optimized loading */}
+                      <img
+                        src={images[currentImage]}
+                        alt={`Product ${currentImage + 1}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
 
-                        <motion.div
-                          animate={{ rotate: -360 }}
-                          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                          className="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-300 rounded-2xl p-1.5 shadow-xl"
-                        >
-                          <div className="w-full h-full bg-gradient-to-br from-orange-100 to-white rounded-xl" />
-                        </motion.div>
+                      {/* Only show gradient overlay on desktop */}
+                      {!isMobile && (
+                        <>
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6 }}
+                            className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-[47px]"
+                          />
+
+                          {/* Only show shine effect on desktop */}
+                          <motion.div
+                            animate={{
+                              x: ["-100%", "200%"],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              repeatDelay: 2,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                            style={{ width: "50%" }}
+                          />
+
+                          {/* Only show glow layer on desktop */}
+                          <motion.div
+                            animate={{
+                              opacity: [0.7, 1, 0.7],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-orange-400/20 to-orange-500/30 rounded-[47px]"
+                          />
+                        </>
+                      )}
+                    </div>
+
+                        {/* Only show decorative corners on desktop */}
+                        {!isMobile && (
+                          <>
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                              className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-300 rounded-2xl p-1.5 shadow-xl"
+                            >
+                              <div className="w-full h-full bg-gradient-to-br from-orange-100 to-white rounded-xl" />
+                            </motion.div>
+
+                            <motion.div
+                              animate={{ rotate: -360 }}
+                              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                              className="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-300 rounded-2xl p-1.5 shadow-xl"
+                            >
+                              <div className="w-full h-full bg-gradient-to-br from-orange-100 to-white rounded-xl" />
+                            </motion.div>
+                          </>
+                        )}
                       </div>
                     </motion.div>
                   </AnimatePresence>
 
-                  {/* Smooth Preview Cards */}
-                  <motion.div
-                    animate={{
-                      x: [-25, -15, -25],
-                      y: [15, 5, 15],
-                      rotateY: [8, 12, 8],
-                    }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="hidden lg:block absolute -left-28 top-1/2 transform -translate-y-1/2 z-0"
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    <div className="w-52 h-64 bg-gradient-to-br from-orange-200/90 to-orange-100/90 backdrop-blur-md rounded-3xl p-2.5 shadow-2xl border-2 border-white/30">
-                      <div className="w-full h-full rounded-2xl overflow-hidden">
-                        <motion.img
-                          initial={{ opacity: 0.7 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5 }}
-                          src={images[(currentImage - 1 + images.length) % images.length]}
-                          alt="Previous"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl" />
-                    </div>
-                  </motion.div>
+                  {/* Only show preview cards on desktop */}
+                  {!isMobile && (
+                    <>
+                      <motion.div
+                        animate={{
+                          x: [-25, -15, -25],
+                          y: [15, 5, 15],
+                          rotateY: [8, 12, 8],
+                        }}
+                        transition={{
+                          duration: 5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="hidden lg:block absolute -left-28 top-1/2 transform -translate-y-1/2 z-0 cursor-pointer"
+                        style={{ transformStyle: "preserve-3d" }}
+                        onClick={prevImage}
+                      >
+                        <div className="w-52 h-64 bg-gradient-to-br from-orange-200/90 to-orange-100/90 backdrop-blur-md rounded-3xl p-2.5 shadow-2xl border-2 border-white/30">
+                          <div className="w-full h-full rounded-2xl overflow-hidden">
+                            <img
+                              src={images[(currentImage - 1 + images.length) % images.length]}
+                              alt="Previous"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl" />
+                        </div>
+                      </motion.div>
 
-                  <motion.div
-                    animate={{
-                      x: [25, 15, 25],
-                      y: [15, 5, 15],
-                      rotateY: [-8, -12, -8],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5,
-                    }}
-                    className="hidden lg:block absolute -right-28 top-1/2 transform -translate-y-1/2 z-0"
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    <div className="w-52 h-64 bg-gradient-to-br from-orange-200/90 to-orange-100/90 backdrop-blur-md rounded-3xl p-2.5 shadow-2xl border-2 border-white/30">
-                      <div className="w-full h-full rounded-2xl overflow-hidden">
-                        <motion.img
-                          initial={{ opacity: 0.7 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5 }}
-                          src={images[(currentImage + 1) % images.length]}
-                          alt="Next"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl" />
-                    </div>
-                  </motion.div>
+                      <motion.div
+                        animate={{
+                          x: [25, 15, 25],
+                          y: [15, 5, 15],
+                          rotateY: [-8, -12, -8],
+                        }}
+                        transition={{
+                          duration: 6,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.5,
+                        }}
+                        className="hidden lg:block absolute -right-28 top-1/2 transform -translate-y-1/2 z-0 cursor-pointer"
+                        style={{ transformStyle: "preserve-3d" }}
+                        onClick={nextImage}
+                      >
+                        <div className="w-52 h-64 bg-gradient-to-br from-orange-200/90 to-orange-100/90 backdrop-blur-md rounded-3xl p-2.5 shadow-2xl border-2 border-white/30">
+                          <div className="w-full h-full rounded-2xl overflow-hidden">
+                            <img
+                              src={images[(currentImage + 1) % images.length]}
+                              alt="Next"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl" />
+                        </div>
+                      </motion.div>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -446,15 +508,7 @@ export default function Home() {
                 {images.map((_, index) => (
                   <motion.button
                     key={index}
-                    onClick={() => {
-                      setDirection(index > currentImage ? 1 : -1);
-                      setCurrentImage(index);
-                      clearInterval(carouselInterval.current);
-                      carouselInterval.current = setInterval(() => {
-                        setDirection(1);
-                        setCurrentImage((prev) => (prev + 1) % images.length);
-                      }, 5000);
-                    }}
+                    onClick={() => goToImage(index)}
                     whileHover={{ scale: 1.4, y: -6 }}
                     whileTap={{ scale: 0.9 }}
                     className="relative group"
@@ -469,7 +523,7 @@ export default function Home() {
                       }`}
                     />
                     
-                    {index === currentImage && (
+                    {index === currentImage && !isMobile && (
                       <>
                         <motion.div
                           layoutId="indicator-glow"
@@ -495,48 +549,19 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* Smooth Navigation Areas */}
-              <div className="absolute inset-0 z-20 pointer-events-none">
-                <motion.div
-                  whileHover={{ backgroundColor: "rgba(249, 115, 22, 0.03)" }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute left-0 top-0 bottom-0 w-1/3 cursor-pointer pointer-events-auto"
-                  onClick={prevImage}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, x: 10 }}
-                    whileHover={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute left-6 top-1/2 transform -translate-y-1/2"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/30 flex items-center justify-center shadow-xl hover:bg-white/30 transition-all duration-300">
-                      <svg className="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </div>
-                  </motion.div>
-                </motion.div>
-                
-                <motion.div
-                  whileHover={{ backgroundColor: "rgba(249, 115, 22, 0.03)" }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute right-0 top-0 bottom-0 w-1/3 cursor-pointer pointer-events-auto"
-                  onClick={nextImage}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    whileHover={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute right-6 top-1/2 transform -translate-y-1/2"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/30 flex items-center justify-center shadow-xl hover:bg-white/30 transition-all duration-300">
-                      <svg className="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
+              {/* Touch navigation areas for mobile - invisible but clickable */}
+              {isMobile && (
+                <div className="absolute inset-0 z-20">
+                  <div 
+                    className="absolute left-0 top-0 bottom-0 w-1/2 cursor-pointer"
+                    onClick={prevImage}
+                  />
+                  <div 
+                    className="absolute right-0 top-0 bottom-0 w-1/2 cursor-pointer"
+                    onClick={nextImage}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -678,7 +703,7 @@ export default function Home() {
             View All Menu
           </button>
         </Link>
-        </div>
+        </div>a
       </div>
     </div>
   );

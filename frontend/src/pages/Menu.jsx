@@ -1,10 +1,10 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -44,7 +44,6 @@ export default function Menu() {
       category: "Shake",
       image: "images/products/shake/strawberry.png",
     },
-
     // Sodas
     {
       id: 5,
@@ -64,13 +63,13 @@ export default function Menu() {
       category: "Soda",
       image: "images/products/soda/peach.png",
     },
-        {
+    {
       id: 8,
       name: "Kiwi Soda",
       category: "Soda",
       image: "images/products/soda/kiwi.png",
     },
-// Fruit Tea
+    // Fruit Tea
     {
       id: 9,
       name: "Kiwi Fruit Tea",
@@ -145,19 +144,19 @@ export default function Menu() {
       category: "Milk Tea",
       image: "images/products/milktea/hokkaido.png",
     },
-        {
+    {
       id: 17,
       name: "Red Velvet Milk Tea",
       category: "Milk Tea",
       image: "images/products/milktea/red_velvet.png",
     },
-          {
+    {
       id: 18,
       name: "Salted Caramel Milk Tea",
       category: "Milk Tea",
       image: "images/products/milktea/salted.png",
     },
-        {
+    {
       id: 19,
       name: "Java Chip Milk Tea",
       category: "Milk Tea",
@@ -169,27 +168,26 @@ export default function Menu() {
       category: "Milk Tea",
       image: "images/products/milktea/javachip.png",
     },
-
-
-    //Yogurt
-     {
+    // Yogurt
+    {
       id: 24,
       name: "Green Apple Yogurt",
       category: "Yogurt",
       image: "images/products/yogurt/greenapple.png",
     },
-     {
+    {
       id: 25,
       name: "Strawberry Yogurt",
       category: "Yogurt",
       image: "images/products/yogurt/strawberry.png",
-    }, {
+    },
+    {
       id: 26,
       name: "Lemon Yogurt",
       category: "Yogurt",
       image: "images/products/yogurt/lemon.png",
     },
-     {
+    {
       id: 27,
       name: "Lychee Yogurt",
       category: "Yogurt",
@@ -204,9 +202,9 @@ export default function Menu() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50/30">
-      {/* Header Section */}
-      <div className="relative bg-gradient-to-r from-orange-500 to-orange-600 text-white py-24 overflow-hidden">
-        {/* Decorative Background Elements */}
+      {/* ENHANCED HEADER SECTION - EXACT COPY FROM FRANCHISE/EVENTS PAGES */}
+      <div className="relative bg-gradient-to-r from-orange-500 to-orange-600 text-white overflow-hidden">
+        {/* Animated Background Elements - Responsive sizes */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             animate={{
@@ -218,7 +216,7 @@ export default function Menu() {
               repeat: Infinity,
               ease: "linear",
             }}
-            className="absolute -top-20 -left-20 w-96 h-96 bg-orange-400/30 rounded-full blur-3xl"
+            className="absolute -top-10 md:-top-20 -left-10 md:-left-20 w-48 md:w-96 h-48 md:h-96 bg-orange-400/30 rounded-full blur-2xl md:blur-3xl"
           />
           <motion.div
             animate={{
@@ -230,7 +228,7 @@ export default function Menu() {
               repeat: Infinity,
               ease: "linear",
             }}
-            className="absolute -bottom-20 -right-20 w-96 h-96 bg-orange-300/20 rounded-full blur-3xl"
+            className="absolute -bottom-10 md:-bottom-20 -right-10 md:-right-20 w-48 md:w-96 h-48 md:h-96 bg-orange-300/20 rounded-full blur-2xl md:blur-3xl"
           />
           <motion.div
             animate={{
@@ -241,17 +239,17 @@ export default function Menu() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute top-1/2 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-2xl"
+            className="absolute top-1/2 left-1/4 w-32 md:w-64 h-32 md:h-64 bg-white/5 rounded-full blur-xl md:blur-2xl"
           />
         </div>
 
-        {/* Content */}
-        <div className="container mx-auto px-6 text-center relative z-10">
+        {/* Content - Responsive padding matching other pages */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="py-12 sm:py-16 md:py-20 lg:py-24 space-y-4 sm:space-y-5 md:space-y-6"
           >
             {/* Menu Icon */}
             <motion.div
@@ -265,9 +263,9 @@ export default function Menu() {
               }}
               className="inline-block"
             >
-              <div className="w-20 h-20 mx-auto bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
                 <svg
-                  className="w-10 h-10 text-white"
+                  className="w-8 h-8 sm:w-10 sm:h-10 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -282,12 +280,12 @@ export default function Menu() {
               </div>
             </motion.div>
 
-            {/* Heading */}
+            {/* Heading - Responsive text */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-3 md:mb-4"
             >
               Our Menu
             </motion.h1>
@@ -297,22 +295,22 @@ export default function Menu() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-orange-100 max-w-3xl mx-auto leading-relaxed"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-orange-100 max-w-3xl mx-auto leading-relaxed px-2"
             >
               Discover our signature mango-based drinks crafted with real fruit
               and premium ingredients
             </motion.p>
 
-            {/* Feature Badges */}
+            {/* Feature Badges - Stack on mobile, row on desktop */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-8 pt-8"
+              className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 pt-4 sm:pt-6 md:pt-8"
             >
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full w-full sm:w-auto justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -324,11 +322,11 @@ export default function Menu() {
                     d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
                   />
                 </svg>
-                <span className="font-semibold">100% Real Mango</span>
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold">100% Real Mango</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full w-full sm:w-auto justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -340,11 +338,11 @@ export default function Menu() {
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="font-semibold">Made Fresh Daily</span>
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold">Made Fresh Daily</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full w-full sm:w-auto justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -356,19 +354,20 @@ export default function Menu() {
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                   />
                 </svg>
-                <span className="font-semibold">18+ Flavors</span>
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold">18+ Flavors</span>
               </div>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Bottom Wave */}
+        {/* Bottom Wave - Responsive height */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg
             viewBox="0 0 1440 120"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full"
+            className="w-full h-8 sm:h-12 md:h-16 lg:h-20"
+            preserveAspectRatio="none"
           >
             <path
               d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
@@ -378,74 +377,60 @@ export default function Menu() {
         </div>
       </div>
 
-      {/* Category Filter */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md py-6">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-3"
-          >
-            {categories.map((category, index) => (
+      {/* Category Filter - Mobile optimized */}
+      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+            {categories.map((category) => (
               <motion.button
                 key={category}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-lg font-medium text-xs sm:text-sm md:text-base transition-all whitespace-nowrap ${
                   selectedCategory === category
-                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg"
-                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-orange-400 hover:text-orange-600"
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md"
+                    : "bg-white text-gray-700 border border-gray-200 hover:border-orange-400 hover:text-orange-600"
                 }`}
               >
                 {category}
               </motion.button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Menu Items Grid */}
-      <div className="container mx-auto px-6 py-16">
+      {/* Menu Items Grid - Mobile first */}
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6"
           >
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.5) }}
+                className="bg-white rounded-lg sm:rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
               >
-                {/* Image Container */}
-                <div className="relative overflow-hidden h-80">
-                  <motion.img
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
+                {/* Square image container */}
+                <div className="aspect-square overflow-hidden bg-gray-50">
+                  <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
-
-                {/* Name Label */}
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-semibold text-orange-600">
+                
+                {/* Product name */}
+                <div className="p-2 sm:p-3 text-center">
+                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-orange-600 line-clamp-2">
                     {item.name}
                   </h3>
                 </div>
@@ -454,48 +439,43 @@ export default function Menu() {
           </motion.div>
         </AnimatePresence>
 
-        {/* No Results Message */}
+        {/* No Results */}
         {filteredItems.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-20"
-          >
-            <p className="text-gray-500 text-xl">
+          <div className="text-center py-12 sm:py-16">
+            <p className="text-gray-500 text-sm sm:text-base">
               No items found in this category
             </p>
-          </motion.div>
+          </div>
         )}
       </div>
 
-      {/* Bottom CTA Section */}
-     <div className="bg-gradient-to-r from-orange-500 to-orange-600 py-16">
-      <div className="container mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="space-y-6"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Can't decide? Try our Customer Favorites!
-          </h2>
-          <p className="text-orange-100 text-lg max-w-2xl mx-auto">
-            Visit any of our branches and let our staff help you choose the
-            perfect drink for your taste
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => window.location.href = '/branches'}
-            className="px-10 py-4 bg-white text-orange-600 font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+      {/* Bottom CTA */}
+      <div className="bg-gradient-to-r from-orange-500 to-orange-600">
+        <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mx-auto space-y-4 sm:space-y-5"
           >
-            Find a Branch
-          </motion.button>
-        </motion.div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white px-2">
+              Can't decide? Try our Customer Favorites!
+            </h2>
+            <p className="text-orange-100 text-sm sm:text-base md:text-lg px-4">
+              Visit any branch and let our staff help you choose the perfect drink
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => window.location.href = '/branches'}
+              className="px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 bg-white text-orange-600 font-bold rounded-lg shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
+            >
+              Find a Branch
+            </motion.button>
+          </motion.div>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
