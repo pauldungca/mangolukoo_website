@@ -7,6 +7,7 @@ import Menu from "./pages/Menu";
 import ContactUs from "./pages/ContactUs";
 import Events from "./pages/Events";
 import Franchise from "./pages/Franchise";
+import UnderConstruction from "./pages/UnderConstruction";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="events" element={<Events />} />
           <Route path="franchise" element={<Franchise />} />
+          <Route path="under-construction" element={<UnderConstruction />} />
+          {/* Catch-all route for all other undefined pages */}
+          <Route path="*" element={<UnderConstruction />} />
         </Route>
       </Routes>
     </BrowserRouter>

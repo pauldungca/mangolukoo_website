@@ -13,6 +13,7 @@ export default function Header() {
     { name: "Contact Us", path: "/contact-us" },
     { name: "Events", path: "/events" },
     { name: "Franchise", path: "/franchise" },
+    { name: "Under Construction", path: "/under-construction" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -43,11 +44,7 @@ export default function Header() {
                   className={`
                     text-base font-medium transition-all duration-300 relative
                     pb-1 inline-block
-                    ${
-                      isActive(item.path)
-                        ? "text-mango-orange"
-                        : "text-gray-700"
-                    }
+                    ${isActive(item.path) ? "text-mango-orange" : "text-gray-700"}
                     hover:text-mango-orange
                     after:content-[''] after:absolute after:bottom-0 after:left-0
                     after:w-0 after:h-0.5 after:bg-mango-orange after:rounded-full
@@ -86,7 +83,7 @@ export default function Header() {
         <div
           className={`
             lg:hidden overflow-hidden transition-all duration-300 ease-in-out
-            ${menuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"}
+            ${menuOpen ? "max-h-[1000px] opacity-100 mt-4" : "max-h-0 opacity-0"}
           `}
         >
           <ul className="flex flex-col space-y-3 border-t pt-4">
@@ -97,11 +94,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className={`
                     block py-2 text-base font-medium
-                    ${
-                      isActive(item.path)
-                        ? "text-mango-orange"
-                        : "text-gray-700"
-                    }
+                    ${isActive(item.path) ? "text-mango-orange" : "text-gray-700"}
                     hover:text-mango-orange
                   `}
                 >
